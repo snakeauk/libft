@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:32:17 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/18 01:29:44 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/18 03:19:52 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 
 char	*ft_strdup(const char *s1)
 {
-	char 	*str;
-	size_t	index;
+	char	*str;
+	size_t	size;
 
-	str = (char *)malloc(sizeof(s1) * (ft_strlen(s1) + 1));
-	if (!str)
+	size = ft_strlen(s1);
+	str = (char *)malloc(sizeof(char) * (size + 1));
+	if (str == NULL)
 		return (0);
-	index = 0;
-	while (str[index])
-	{
-		str[index] = s1[index];
-		index++;
-	}
-	str[index] = '\0';
+	ft_memcpy(str, s1, size);
+	str[size] = '\0';
 	return (str);
 }

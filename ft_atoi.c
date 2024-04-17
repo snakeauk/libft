@@ -6,11 +6,18 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:09:05 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/18 01:41:59 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/18 04:41:32 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+int	ft_isspace(int c)
+{
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (1);
+	return (0);
+}
 
 int	ft_atoi(const char *str)
 {
@@ -21,7 +28,7 @@ int	ft_atoi(const char *str)
 	ln = 0;
 	index = 0;
 	sign = 1;
-	while ((str[index] >= 9 && str[index] <= 13) || str[index] == 32)
+	while (ft_isspace(str[index]))
 		index++;
 	if (str[index] == '-' || str[index] == '+')
 	{
@@ -31,10 +38,11 @@ int	ft_atoi(const char *str)
 	}
 	while (str[index] >= '0' && str[index] <= '9')
 	{
-		ln  = ln * 10;
-		ln  += str[index] - '0';
-		if (ln > 9223372036854775807)
-			ln--;
+		if ((ln > 922337203685477580 && sign == 1 && str[index] > '7') || ln >= 922337203685477581)
+			return (-1);
+		else if ((ln > 922337203685477580 && str[index] > '8' && sign == -1) | (ln >= 922337203685477581))
+			return (0);
+		ln  = ln * 10 + (str[index] - '0');
 		index++;
 	}
 	return (sign * ln);

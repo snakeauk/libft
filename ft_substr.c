@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 15:31:57 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/18 16:34:51 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/19 03:23:25 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char 	*substr;
 	size_t	s_len;
-	size_t	index;
 
 	if (!s)
 		return (0);
 	s_len = ft_strlen(s);
-	if (s_len > start)
+	if (start >= s_len)
+		len = 0;
+	else if(start + len > s_len)
 		len = s_len - start;
-	substr = (char *)malloc(sizeof(char) * (len + 1));
+	substr = ft_calloc(len + 1, sizeof(char));
 	if (!substr)
 		return (0);
-	index = 0;
 	ft_strlcpy(substr, s + start, len + 1);
 	return (substr);
 }

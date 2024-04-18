@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:09:05 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/18 04:41:32 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/18 05:23:39 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	ft_atoi(const char *str)
 	}
 	while (str[index] >= '0' && str[index] <= '9')
 	{
-		if ((ln > 922337203685477580 && sign == 1 && str[index] > '7') || ln >= 922337203685477581)
+		if (((ln > 922337203685477580 &&  (char)str[index] > '7' && sign == 1) || ln > 922337203685477581))
 			return (-1);
-		else if ((ln > 922337203685477580 && str[index] > '8' && sign == -1) | (ln >= 922337203685477581))
+		else if (((ln > 922337203685477580 && (char)str[index] > '8' && sign == -1)) || (ln >= 922337203685477581))
 			return (0);
 		ln  = ln * 10 + (str[index] - '0');
 		index++;

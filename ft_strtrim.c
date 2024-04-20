@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 22:48:28 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/19 04:41:26 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/21 02:02:34 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,26 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	index;
-	size_t	i;
+	size_t	start;
 	size_t	end;
 	size_t	len;
 	char *str;
 
 	if (!s1 || !set)
 		return (0);
-	index = 0;
 	end = ft_strlen(s1);
-	while (s1[index] && ft_strchr(set, s1[index]))
-		index++;
-	if (!s1[index])
-		return (ft_strdup(""));
-	while (end > index && ft_strchr(set, s1[end]))
+	start = 0;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	while (end >= start && ft_strchr(set, s1[end - 1]))
 		end--;
-	len = (end - index) + 1;
-	str = ft_calloc(len, sizeof(char));
-	i = 0;
-	while (i < len && s1[i])
-	{
-		str[i] = s1[i + index];
-		i++;
-	}
+	if (start == end)
+		return (ft_strdup(""));
+	len = end - start;
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (0);
+	ft_strlcpy(str, &s1[start], len + 1);
 	return (str);
 }
 // #include <stdio.h>

@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:09:05 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/20 18:20:30 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:34:32 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_atoi(const char *str)
 		ln += str[index] - '0';
 		index++;
 	}
-	return (ln * (1 + ((-2) * sign)));
+	return (ln * ((sign * (-2)) + 1));
 }
 // #include <stdio.h>
 // #include <stdlib.h>

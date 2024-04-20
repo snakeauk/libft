@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:39:24 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/19 08:18:07 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/21 02:00:49 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	count_words(char const *str, char chr)
 	int	count;
     size_t  index;
 
+	if (!str)
+		return (0);
     index = 0;
 	count = 1;
 	while (str[index])
@@ -46,6 +48,11 @@ char    *ft_strndup(char const *str, size_t len)
 	size_t	index;
 
 	word = (char *)malloc(sizeof(char) * (len + 1));
+	if (!word)
+	{
+		free(word);
+		return (0);
+	}
 	index = 0;
 	while (index < len)
 	{
@@ -78,7 +85,20 @@ char **ft_split(char const *s, char c)
 		while (s[index] && !chrcmp(s[index], c))
 			index++;
 		if (index > start)
-			result[count++] = ft_strndup((char *)&s[start], index - start);
+		{
+			result[count] = ft_strndup((char *)&s[start], index - start);
+			if (!result[count])
+			{
+				while (count--)
+				{
+					free(result[count]);
+					count--;
+				}
+				free(result);
+				return (0);
+			}
+			count++;
+		}
 	}
 	result[count] = 0;
 	return (result);
@@ -89,11 +109,12 @@ char **ft_split(char const *s, char c)
 // int main(int ac, char **av)
 // {
 //     int index;
-//     if (ac != 3)
+//     if (ac != 2)
 //         return (0);
 //     char *s = av[1];
-//     char *c = av[2];
-//     char **split = ft_split(s, c[0]);
+//     char c = ' ';
+
+//     char **split = ft_split(s, c);
 
 //     index = 0;
 //     while(split[index])

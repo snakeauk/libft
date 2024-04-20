@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:40:26 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/20 16:13:38 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/20 20:27:24 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_itoa(int n)
     }
     if (sign)
         int_char[0] = '-';
-    return (int_char);
+    return (ft_strdup(int_char));
 }
 // #include <stdio.h>
 // #include <stdlib.h>

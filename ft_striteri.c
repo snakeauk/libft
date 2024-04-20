@@ -6,10 +6,22 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:42:59 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/18 23:43:04 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:01:27 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+{
+    size_t  index;
+
+    if (!s || !f)
+        return ;
+    index = 0;
+    while (s[index])
+    {
+        f(index, &s[index]);
+        index++;
+    }
+}

@@ -6,63 +6,59 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:40:26 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/20 14:50:35 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/20 16:13:38 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "libft.h"
 
 size_t	ft_size(long n)
 {
-	size_t	size;
-
-	size = 1;
-	while (n > 9)
-	{
-		size++;
-		n /= 10;
-	}
-	return (size);
+    size_t  size = 1;
+    while (n > 9)
+    {
+        size++;
+        n /= 10;
+    }
+    return size;
 }
 
 char	*ft_itoa(int n)
 {
-	long    lnb;
-	char    *int_char;
-    size_t  sign;
+    long    ln = n;
+    char    *int_char;
+    size_t  sign = 0;
     size_t  size;
-
-	lnb = n;
-    sign = 0;
-	if (0 > lnb)
+    
+    if (ln < 0)
     {
         sign = 1;
-        lnb *= -1;
+        ln *= -1;
     }
-    size = ft_size(n);
-    size += sign;
-    int_char = (char *)ft_calloc(size + 1, sizeof(char));
+    size = ft_size(ln);
+    int_char = (char *)calloc((size + sign + 1), sizeof(char));
     if (!int_char)
         return (0);
-	while (size > 0)
+    size--;
+    while (size + 1 > 0)
     {
-        int_char[size] = (lnb % 10) + '0';
-        lnb /= 10;
+        int_char[size + sign] = (ln % 10) + '0';
+        ln /= 10;
         size--;
     }
     if (sign)
         int_char[0] = '-';
     return (int_char);
 }
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-int main(int ac, char **av)
-{
-    if (ac != 2)
-        return (0);
-    int i = atoi(av[1]);
-    printf("ft_itoa:%s\n",ft_itoa(i));
-    return (0);
-}
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <string.h>
+// int main(int ac, char **av)
+// {
+//     if (ac != 2)
+//         return (0);
+//     int i = atoi(av[1]);
+//     printf("ft_itoa:%s\n",ft_itoa(i));
+//     return (0);
+// }

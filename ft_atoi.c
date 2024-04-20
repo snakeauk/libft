@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 19:09:05 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/18 05:23:39 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:20:30 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,29 +23,35 @@ int	ft_atoi(const char *str)
 {
 	size_t			index;
 	int				sign;
-	unsigned long int	ln;
+	unsigned long	ln;
+	unsigned long	overflow;
 
 	ln = 0;
 	index = 0;
-	sign = 1;
+	sign = 0;
 	while (ft_isspace(str[index]))
 		index++;
 	if (str[index] == '-' || str[index] == '+')
 	{
 		if (str[index] == '-')
-			sign *= -1;
+			sign = 1;
 		index++;
 	}
-	while (str[index] >= '0' && str[index] <= '9')
+	overflow = (unsigned long)LONG_MAX;
+	if (sign)
+		overflow = (unsigned long)LONG_MIN;
+	while (ft_isdigit(str[index]))
 	{
-		if (((ln > 922337203685477580 &&  (char)str[index] > '7' && sign == 1) || ln > 922337203685477581))
-			return (-1);
-		else if (((ln > 922337203685477580 && (char)str[index] > '8' && sign == -1)) || (ln >= 922337203685477581))
-			return (0);
-		ln  = ln * 10 + (str[index] - '0');
+		ln *= 10;
+		if (ln > overflow || overflow - ln < (unsigned long)str[index] - '0')
+		{
+			ln = overflow;
+			break ;
+		}
+		ln += str[index] - '0';
 		index++;
 	}
-	return (sign * ln);
+	return (ln * (1 + ((-2) * sign)));
 }
 // #include <stdio.h>
 // #include <stdlib.h>

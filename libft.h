@@ -6,13 +6,15 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 13:45:34 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/18 23:46:21 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/19 17:19:08 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+#include <limits.h>
+#include <stddef.h>
 #include <unistd.h>
 #include <stdlib.h>
 

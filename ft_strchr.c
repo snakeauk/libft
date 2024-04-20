@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:33:33 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/17 22:06:53 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/19 08:51:08 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != (char)c)
+	size_t	index;
+
+	index = 0;
+	while (s[index] != (char)c)
 	{
-		if (!*s)
+		if (!s[index])
 			return (0);
-		s++;
+		index++;
 	}
-	return ((char *)s);
+	return ((char *)&s[index]);
 }

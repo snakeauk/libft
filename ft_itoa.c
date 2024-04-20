@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:40:26 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/20 08:32:32 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:50:35 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*ft_itoa(int n)
     size_t  sign;
     size_t  size;
 
-    size  = ft_size(n);
 	lnb = n;
     sign = 0;
 	if (0 > lnb)
@@ -40,6 +39,7 @@ char	*ft_itoa(int n)
         sign = 1;
         lnb *= -1;
     }
+    size = ft_size(n);
     size += sign;
     int_char = (char *)ft_calloc(size + 1, sizeof(char));
     if (!int_char)

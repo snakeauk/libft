@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:31:55 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/18 19:51:32 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:43:19 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	size_t	index;
 
-	if (!dst || !src)
+	if (!dst && !src)
 		return (0);
-	if (src < dst)
+	if (dst > src)
 	{
 		index = len;
-		while (index-- > 0)
+		while (index > 0)
+		{
+			index--;
 			((char *)dst)[index] = ((char *)src)[index];
+			// index--;
+		}
 	}
 	else
 	{

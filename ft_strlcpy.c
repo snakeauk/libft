@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:38:56 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/21 02:00:57 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/21 23:30:08 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	index;
 
-	if (!src)
-		return (0);
 	index = 0;
 	if (dstsize > 0)
 	{

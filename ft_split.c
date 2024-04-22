@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:39:24 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/21 02:00:49 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/22 00:26:18 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,7 @@ char    *ft_strndup(char const *str, size_t len)
 
 	word = (char *)malloc(sizeof(char) * (len + 1));
 	if (!word)
-	{
-		free(word);
 		return (0);
-	}
 	index = 0;
 	while (index < len)
 	{
@@ -88,15 +85,7 @@ char **ft_split(char const *s, char c)
 		{
 			result[count] = ft_strndup((char *)&s[start], index - start);
 			if (!result[count])
-			{
-				while (count--)
-				{
-					free(result[count]);
-					count--;
-				}
-				free(result);
 				return (0);
-			}
 			count++;
 		}
 	}

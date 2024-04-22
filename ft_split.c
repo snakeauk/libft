@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:39:24 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/22 00:26:18 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/22 20:09:47 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	chrcmp(char const c1, char const c2)
 
 int	count_words(char const *str, char chr)
 {
-	int	count;
+	int		count;
     size_t  index;
 
 	if (!str)
@@ -47,16 +47,16 @@ char    *ft_strndup(char const *str, size_t len)
 	char	*word;
 	size_t	index;
 
-	word = (char *)malloc(sizeof(char) * (len + 1));
+	word = (char *)malloc(sizeof(char) * len);
 	if (!word)
-		return (0);
+		return (NULL);
 	index = 0;
 	while (index < len)
 	{
 		word[index] = str[index];
 		index++;
 	}
-	word[len] = '\0';
+	word[index] = '\0';
 	return (word);
 }
 
@@ -69,9 +69,9 @@ char **ft_split(char const *s, char c)
 	size_t	start;
 
 	words = count_words(s, c);
-	result = (char **)malloc(sizeof(char *) * (words + 1));
+	result = (char **)malloc(sizeof(char *) * (words));
 	if (!result)
-		return (0);
+		return (NULL);
 	count = 0;
     index = 0;
 	while (s[index])
@@ -85,7 +85,7 @@ char **ft_split(char const *s, char c)
 		{
 			result[count] = ft_strndup((char *)&s[start], index - start);
 			if (!result[count])
-				return (0);
+				return (NULL);
 			count++;
 		}
 	}
@@ -98,10 +98,10 @@ char **ft_split(char const *s, char c)
 // int main(int ac, char **av)
 // {
 //     int index;
-//     if (ac != 2)
+//     if (ac != 3)
 //         return (0);
 //     char *s = av[1];
-//     char c = ' ';
+//     char c = av[2][0];
 
 //     char **split = ft_split(s, c);
 

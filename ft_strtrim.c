@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 22:48:28 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/21 02:02:34 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/22 19:31:40 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = 0;
 	while (s1[start] && ft_strchr(set, s1[start]))
 		start++;
-	while (end >= start && ft_strchr(set, s1[end - 1]))
+	while (end > start && ft_strchr(set, s1[end - 1]))
 		end--;
-	if (start == end)
-		return (ft_strdup(""));
 	len = end - start;
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)

@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:12:31 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/17 19:44:42 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/30 02:48:44 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t	index;
+	size_t	count;
 
-	index = 0;
-	while (s[index])
-		index++;
-	return (index);
+	count = 0;
+	while (s[count])
+		count++;
+	return (count);
 }

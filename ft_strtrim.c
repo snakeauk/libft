@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 22:48:28 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/22 19:31:40 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/30 00:39:40 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	start;
 	size_t	end;
 	size_t	len;
-	char *str;
+	char	*str;
 
 	if (!s1 || !set)
-		return (0);
+		return (NULL);
 	end = ft_strlen(s1);
 	start = 0;
 	while (s1[start] && ft_strchr(set, s1[start]))
@@ -30,21 +30,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len = end - start;
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
-		return (0);
+		return (NULL);
 	ft_strlcpy(str, &s1[start], len + 1);
 	return (str);
 }
-// #include <stdio.h>
-// #include <string.h>
-// #include <stdlib.h>
-// int main(int ac, char **av)
-// {
-// 	if (ac != 3)
-// 		return (0);
-
-// 	char *s1 = av[1];
-// 	char *set = av[2];
-
-// 	printf("ft_strtrim:%s\n", ft_strtrim(s1, set));
-// 	return (0);
-// }

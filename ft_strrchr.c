@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:53:03 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/17 23:08:03 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/29 13:18:54 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,16 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	size_t	index;
-	char	*last;
+	size_t	len;
 
-	index = 0;
-	last = 0;
-	while (s[index])
+	len = ft_strlen(s);
+	while (len > 0)
 	{
-		if (((char*)s)[index] == (char)c)
-			last = &((char *)s)[index];
-		index++;
+		if (s[len] == (char)c)
+			return ((char *)&s[len]);
+		len--;
 	}
-	if (!c)
-		last = &((char*)s)[index];
-	return (last);
+	if (s[len] == (char)c)
+		return ((char *)&s[len]);
+	return (NULL);
 }
-// 24の((char*)s)のキャストをはずずとエラーが出る
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-// int main(int ac, char **av)
-// {
-// 	if (ac != 3)
-// 		return (0);
-// 	char *s = av[1];
-// 	char *ft_s = av[1];
-
-// 	char c = av[2][0];
-// 	char ft_c = av[2][0];
-// 	printf("   strrchr:%s\n", strrchr(s, c));
-// 	printf("ft_strrchr:%s\n", ft_strrchr(ft_s, ft_c));
-// 	return (0);
-// }

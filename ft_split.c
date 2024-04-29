@@ -6,112 +6,109 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:39:24 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/22 20:26:07 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/30 02:36:52 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	chrcmp(char const c1, char const c2)
+static void	contents_free(char **result, size_t count)
 {
-    if (c1 == c2)
-        return (1);
-	return (0);
+	while (count > 0)
+	{
+		count--;
+		free(result[count]);
+	}
+	free(result);
 }
 
-int	count_words(char const *str, char chr)
+static int	count_words(char const *str, char c)
 {
 	int		count;
-    size_t  index;
+	int		flag;
+	size_t	index;
 
 	if (!str)
 		return (0);
-    index = 0;
-	count = 1;
+	index = 0;
+	count = 0;
+	flag = 0;
 	while (str[index])
 	{
-		while (str[index] && chrcmp(str[index], chr))
-			index++;
-		if (str[index])
+		if (str[index] != c && flag == 0)
 		{
+			flag = 1;
 			count++;
-			while (str[index] && !chrcmp(str[index], chr))
-				index++;
 		}
+		else if (str[index] == c)
+			flag = 0;
+		index++;
 	}
 	return (count);
 }
 
-char    *ft_strndup(char const *str, size_t len)
+static char	*ft_strndup(const char *str, size_t len)
 {
 	char	*word;
 	size_t	index;
 
+	if (!len)
+		return (NULL);
 	word = (char *)malloc(sizeof(char) * (len + 1));
 	if (!word)
 		return (NULL);
 	index = 0;
-	while (index < len)
+	while (str[index] && index < len)
 	{
 		word[index] = str[index];
 		index++;
 	}
-	word[index] = '\0';
+	word[len] = '\0';
 	return (word);
 }
 
-char **ft_split(char const *s, char c)
+static char	**ft_separate(const char *s, char c, char **result, size_t *count)
+{
+	size_t	index;
+	size_t	start;
+
+	index = 0;
+	while (s[index])
+	{
+		while (s[index] && s[index] == c)
+			index++;
+		start = index;
+		while (s[index] && s[index] != c)
+			index++;
+		if (index > start)
+		{
+			result[*count] = ft_strndup(s + start, index - start);
+			if (!result[*count])
+			{
+				contents_free(result, *count);
+				return (NULL);
+			}
+			(*count)++;
+		}
+	}
+	return (result);
+}
+
+char	**ft_split(char const *s, char c)
 {
 	int		words;
 	char	**result;
-    size_t  index;
-	size_t  count;
-	size_t	start;
+	size_t	count;
 
 	if (!s)
 		return (NULL);
 	words = count_words(s, c);
-	result = (char **)malloc(sizeof(char *) * (words));
+	result = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!result)
 		return (NULL);
 	count = 0;
-    index = 0;
-	while (s[index])
-	{
-		while (s[index] && chrcmp(s[index], c))
-			index++;
-		start = index;
-		while (s[index] && !chrcmp(s[index], c))
-			index++;
-		if (index > start)
-		{
-			result[count] = ft_strndup((char *)&s[start], index - start);
-			if (!result[count])
-				return (NULL);
-			count++;
-		}
-	}
-	result[count] = 0;
+	if (!ft_separate(s, c, result, &count))
+		return (NULL);
+	result[count] = NULL;
 	return (result);
 }
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-// int main(int ac, char **av)
-// {
-//     int index;
-//     if (ac != 3)
-//         return (0);
-//     char *s = av[1];
-//     char c = av[2][0];
-
-//     char **split = ft_split(s, c);
-
-//     index = 0;
-//     while(split[index])
-//     {
-//         printf("ft_split:%s\n", split[index]);
-//         index++;
-//     }
-//     return (0);
-// }

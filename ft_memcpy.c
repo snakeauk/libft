@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:24:57 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/17 19:37:33 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:57:02 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t	index;
 
-	if (!dst && !src)
-		return (0);
+	if (dst == src)
+		return (dst);
 	index = 0;
 	while (index < n)
 	{

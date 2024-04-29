@@ -5,65 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/17 19:09:05 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/20 20:34:32 by kinamura         ###   ########.fr       */
+/*   Created: 2024/04/27 13:46:18 by kinamura          #+#    #+#             */
+/*   Updated: 2024/04/29 20:22:06 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isspace(int c)
+static int	ft_isspace(int c)
 {
-	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
+	return ((c >= 9 && c <= 13) || c == 32);
 }
 
 int	ft_atoi(const char *str)
 {
-	size_t			index;
-	int				sign;
-	unsigned long	ln;
-	unsigned long	overflow;
+	int		sign;
+	long	ln;
 
+	sign = 1;
 	ln = 0;
-	index = 0;
-	sign = 0;
-	while (ft_isspace(str[index]))
-		index++;
-	if (str[index] == '-' || str[index] == '+')
+	while (ft_isspace(*str))
+		str++;
+	if (*str == '-' || *str == '+')
 	{
-		if (str[index] == '-')
-			sign = 1;
-		index++;
+		if (*str++ == '-')
+			sign = -1;
 	}
-	overflow = (unsigned long)LONG_MAX;
-	if (sign)
-		overflow = (unsigned long)LONG_MIN;
-	while (ft_isdigit(str[index]))
+	while (ft_isdigit(*str))
 	{
-		ln *= 10;
-		if (ln > overflow || overflow - ln < (unsigned long)str[index] - '0')
-		{
-			ln = overflow;
-			break ;
-		}
-		ln += str[index] - '0';
-		index++;
+		ln = 10 * ln + (*str - '0');
+		str++;
+		if (ft_isdigit(*str) && sign == 1
+			&& ((LONG_MAX - (*str - '0')) / 10 < ln || ln >= LONG_MAX))
+			return ((int)LONG_MAX);
+		else if (ft_isdigit(*str) && sign == -1
+			&& ((LONG_MIN + (*str - '0')) / 10 > -ln || ln < LONG_MIN))
+			return ((int)LONG_MIN);
 	}
-	return (ln * ((sign * (-2)) + 1));
+	return (sign * (int)ln);
 }
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <string.h>
-// int main(int ac, char **av)
-// {
-// 	if (ac != 2)
-// 		return (0);
-
-// 	char *str = av[1];
-// 	char *ft_str = av[1];
-
-// 	printf("   atoi:%d\n", atoi(str));
-// 	printf("ft_atoi:%d\n", ft_atoi(ft_str));
-// }

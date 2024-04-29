@@ -1,6 +1,6 @@
 NAME = libft.a
 CC = cc
-LIBC = ar rcs
+AR = ar rcs
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
@@ -18,25 +18,30 @@ B_SRCS	=	ft_lstnew.c ft_lstadd_front.c \
 			ft_lstadd_back.c ft_lstdelone.c \
 			ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
-OBJS = ${SRCS:.c=.o}
-B_OBJS = ${B_SRCS:.c=.o}
+OBJS = $(SRCS:.c=.o)
+B_OBJS = $(B_SRCS:.c=.o)
 
-.c.o:
-	${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+ifdef With_bonus
+	OBJS += $(B_OBJS)
+endif
 
-${NAME}: ${OBJS}
-	${LIBC} ${NAME} ${OBJS}
+all: $(NAME)
 
-all: ${NAME}
+.c.o: $(OBJS)
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
-bonus: ${NAME} ${B_OBJS}
-	${LIBC} ${NAME} ${B_OBJS}
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
+
 clean:
-	${RM} ${OBJS} ${B_OBJS}
+	$(RM) $(OBJS) $(B_OBJS)
 
 fclean: clean
-	${RM} ${NAME} ${bonus} 
+	$(RM) $(NAME)
 
 re: fclean all
+
+bonus:
+	@make With_bonus=1
 
 .PHONY : all bonus clean fclean re

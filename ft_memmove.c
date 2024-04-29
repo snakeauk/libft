@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:31:55 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/21 23:43:19 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:57:24 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	size_t	index;
 
-	if (!dst && !src)
-		return (0);
+	if (dst == src)
+		return (dst);
 	if (dst > src)
 	{
 		index = len;
@@ -25,7 +25,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 		{
 			index--;
 			((char *)dst)[index] = ((char *)src)[index];
-			// index--;
 		}
 	}
 	else

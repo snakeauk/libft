@@ -6,13 +6,13 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:43:40 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/20 16:05:02 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/22 22:12:05 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putchar_fd(char c, int fd)
+void	ft_putchar_fd(char c, int fd)
 {
-    write(fd, &c, 1);
+	write(fd, &c, 1);
 }

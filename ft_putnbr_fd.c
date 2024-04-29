@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:46:53 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/20 16:28:09 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/22 22:12:42 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-    long    ln;
-    char    c;
+	long	ln;
+	char	c;
 
-    ln = n;
-    if (ln < 0)
-    {
-        ln *= -1;
-        write(fd, "-", 1);
-    }
-    if (ln >= 10)
-        ft_putnbr_fd(ln / 10, fd);
-    c = ln % 10 + '0';
-    write(fd, &c, 1);
+	ln = n;
+	if (ln < 0)
+	{
+		ln *= -1;
+		write(fd, "-", 1);
+	}
+	if (ln >= 10)
+		ft_putnbr_fd(ln / 10, fd);
+	c = ln % 10 + '0';
+	write(fd, &c, 1);
 }

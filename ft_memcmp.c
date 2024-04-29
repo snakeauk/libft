@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 18:38:26 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/17 15:43:56 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/29 20:55:20 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,10 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	index = 0;
 	while (index < n)
 	{
-		if (((unsigned char*)s1)[index] != ((unsigned char*)s2)[index])
-			return (((unsigned char*)s1)[index] - ((unsigned char*)s2)[index]);
+		if (((unsigned char *)s1)[index] != ((unsigned char *)s2)[index])
+			return (((unsigned char *)s1)[index]
+				- ((unsigned char *)s2)[index]);
 		index++;
 	}
-	return (0); 
+	return (0);
 }

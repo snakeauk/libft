@@ -6,13 +6,13 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:40:26 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/29 12:40:30 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/30 09:59:25 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_size(long n)
+static size_t	ft_size(long long n)
 {
 	size_t	size;
 
@@ -32,9 +32,9 @@ static size_t	ft_size(long n)
 
 char	*ft_itoa(int n)
 {
-	long	ln;
-	char	*str;
-	size_t	size;
+	long long	ln;
+	char			*str;
+	size_t			size;
 
 	ln = n;
 	size = ft_size(n);

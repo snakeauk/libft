@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 13:46:18 by kinamura          #+#    #+#             */
-/*   Updated: 2024/06/29 07:24:54 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/07/02 02:51:20 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static int	ft_isspace(int c)
 
 int	ft_atoi(const char *str)
 {
-	int			sign;
 	long long	ln;
+	int			sign;
 
 	sign = 1;
 	ln = 0;
@@ -36,10 +36,10 @@ int	ft_atoi(const char *str)
 		ln = 10 * ln + (*str - '0');
 		str++;
 		if (ft_isdigit(*str) && sign == 1
-			&& ((LONG_MAX - (*str - '0')) / 10 < ln))
+			&& ((LONG_MAX - (*str - '0')) / 10 < ln || ln >= LONG_MAX))
 			return ((int)LONG_MAX);
 		else if (ft_isdigit(*str) && sign == -1
-			&& ((LONG_MIN + (*str - '0')) / 10 > -ln))
+			&& ((LONG_MIN + (*str - '0')) / 10 > -ln || ln < LONG_MIN))
 			return ((int)LONG_MIN);
 	}
 	return (sign * (int)ln);

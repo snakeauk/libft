@@ -6,7 +6,7 @@
 /*   By: kinamura <kinamura@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 23:46:53 by kinamura          #+#    #+#             */
-/*   Updated: 2024/04/30 09:59:38 by kinamura         ###   ########.fr       */
+/*   Updated: 2024/04/22 22:12:42 by kinamura         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	long long	ln;
-	char		c;
+	long	ln;
+	char	c;
 
 	ln = n;
 	if (ln < 0)
